@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+    <link rel="stylesheet" href="css/form_views.css" />
+</head>
+<body>
+    <h2>Register</h2>
+
+    <form action="register.php" method="POST" id="register-form">
+        <label>Username: <input type="text" name="username" required></label><br>
+        <label>Password: <input type="password" name="password" required></label><br>
+
+    <label>Role:
+        <select name="role" id="role-select" required>
+        <option value="">-- Select Role --</option>
+        <option value="patient">Patient</option>
+        <option value="doctor">Doctor</option>
+        <option value="nurse">Nurse</option>
+        <option value="admin">Admin</option>
+         </select>
+    </label><br>
+
+
+        <!-- Patient fields -->
+        <div id="patient-fields" style="display:none; margin-top:10px;">
+            <label>Patient Name: <input type="text" name="patient_name"></label><br>
+            <label>Date of Birth: <input type="date" name="date_of_birth"></label><br>
+            <label>Gender:
+                <select name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </label><br>
+        </div>
+
+        <!-- Doctor fields -->
+        <div id="doctor-fields" style="display:none; margin-top:10px;">
+            <label>Doctor Name: <input type="text" name="doctor_name"></label><br>
+            <label>License No: <input type="text" name="license_no"></label><br>
+            <label>Department:
+                <select name="department">
+                    <option value="cardiology">Cardiology</option>
+                    <option value="neurology">Neurology</option>
+                    <option value="orthopedics">Orthopedics</option>
+                    <option value="pediatrics">Pediatrics</option>
+                    <option value="general">General</option>
+                    <option value="dermatology">Dermatology</option>
+                </select>
+            </label><br>
+            <label>Specialization: <input type="text" name="specialization"></label><br>
+        </div>
+
+        <!-- Nurse fields -->
+        <div id="nurse-fields" style="display:none; margin-top:10px;">
+            <label>Nurse Name: <input type="text" name="nurse_name"></label><br>
+            <label>License No: <input type="text" name="license_no"></label><br>
+            <label>Department:
+                <select name="department">
+                    <option value="cardiology">Cardiology</option>
+                    <option value="neurology">Neurology</option>
+                    <option value="orthopedics">Orthopedics</option>
+                    <option value="pediatrics">Pediatrics</option>
+                    <option value="general">General</option>
+                    <option value="dermatology">Dermatology</option>
+                </select>
+            </label><br>
+        </div>
+
+        <button type="submit" style="margin-top:15px;">Register</button>
+    </form>
+
+    <p>Already registered? <a href="login.php">Login here</a></p>
+
+    <script>
+        const roleSelect = document.getElementById('role-select');
+        const patientFields = document.getElementById('patient-fields');
+        const doctorFields = document.getElementById('doctor-fields');
+        const nurseFields = document.getElementById('nurse-fields');
+
+        roleSelect.addEventListener('change', () => {
+            const role = roleSelect.value;
+            patientFields.style.display = role === 'patient' ? 'block' : 'none';
+            doctorFields.style.display = role === 'doctor' ? 'block' : 'none';
+            nurseFields.style.display = role === 'nurse' ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
